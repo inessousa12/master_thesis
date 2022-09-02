@@ -1,0 +1,16 @@
+click
+colorama
+Flask
+Flask-JWT-Extended
+Flask-SQLAlchemy
+greenlet
+itsdangerous
+Jinja2
+MarkupSafe
+PyJWT
+PyMySQL
+SQLAlchemy
+Werkzeug
+flask-mysql
+flask-cors
+mysql-connector-python

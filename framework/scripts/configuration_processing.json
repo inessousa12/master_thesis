@@ -1,0 +1,21 @@
+{
+    "sensor_handler": {
+        "run_periods_self": 10,
+        "run_periods_others": 0,
+        "approach": 1,
+        "cdf_threshold": 0.9985,
+        "skip_period": 0,
+        "period_time": 900
+    },
+    "communication": {
+        "host": "",
+        "port": 9999
+    },
+    "sensors" : [{
+        "sensor_id": "lnec",
+        "path": "data\\raw_other\\lnec\\temp\\lnec_data_set01_set08.csv",
+        "data_type": "temp",
+        "latitude": 38.644858,
+        "longitude": -9.1046928
+    }]
+}

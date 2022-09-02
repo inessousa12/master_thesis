@@ -1,0 +1,37 @@
+{
+    "training": {
+        "data_train": 0.8,
+        "data_test": 0.2,
+        "epochs": 2000,
+        "hidden_layer_1": 20,
+        "hidden_layer_2": 15,
+        "output_layer": 1,
+        "loss_function": "mean_squared_error",
+        "sensor": "lnec",
+        "metric": "temp",
+        "inputs": "self",
+        "id": 1,
+        "n_other_sensors": 0,
+        "input_shape": 10,
+        "input_target": 10,
+        "input_others": 0,
+        "checkpoint_epochs": 100,
+        "checkpoint_path": "ann/training/",
+        "model_save_path": "ann/models/",
+        "data_path": [
+            "data\\processed\\lnec_two_months\\temp\\lnec.npz"
+        ],
+        "cdf_data_path": "data\\processed\\lnec_two_months\\temp\\lnec.npz",
+        "runs": 10
+    },
+    "training_sets": {
+        "raw_path": "data/raw_main/",
+        "save_path": "data/processed/",
+        "metrics": ["temp"],
+        "n_sensors": 1,
+        "run_periods_self": 10,  
+        "run_periods_others": 0, 
+        "period_time": 900,
+        "skip_period": 0
+    }
+}

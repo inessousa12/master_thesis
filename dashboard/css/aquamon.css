@@ -1,0 +1,325 @@
+.docs-layout-header {
+  height: 120px;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+.mdl-list__item {
+    padding-left: 0px;
+    width: 240px;
+}
+
+h2 {
+    color: #5a5a5a;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.alert-success, .alert-danger {
+    width: 400px;
+    position: absolute !important;
+    z-index: 5;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    margin-top: 1%;
+    display: none;
+}
+
+.form-control {
+    background-color: #b0bec5 !important;
+    border: 0px !important;
+}
+
+.mdh-expandable-search, .mdl-list__item-primary-content {
+    padding-left: 16px;
+}
+
+.device-connected, .device-disconnected, .device-partial-connected{
+    height: 15px;
+    width: 15px;
+    border-radius: 100px;
+    background: green;
+    display: inline-block;
+    margin-right: 5px;
+    transform: translateY(10%);
+}
+
+.device-disconnected{
+    background: red;
+}
+
+.device-partial-connected{
+    background: yellow;
+}
+
+.entity-list li{
+    padding-right: 0;
+    height: 55px;
+    cursor: pointer;
+}
+
+.entity-list ul li{
+    padding-right: 10px;
+    height: 70px;
+}
+
+.entity-list ul{
+    padding-left: 15px;
+}
+
+.entity-list {
+  width: 200px;
+}
+.mdl-textfield {
+	padding-top: 10px;
+}
+
+.entity-name, .mdl-list__item-primary-content > span {
+    font-weight: bold;
+}
+
+.entity-name:hover, .mdl-list__item-primary-content:hover {
+    transform: scale(1.02);
+}
+
+.device-list{
+    display: none;
+}
+
+.button {
+    border-radius: 5px;
+    display: block;
+    width: 184px;
+    margin: -20px 0px 5px 16px;
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.inline-buttons {
+    display: inline-flex;
+}
+
+#add_station, #delete_station, #edit_station, #add_metric, #add_device {
+    margin-top: 10px;
+    width: auto;
+}
+
+#inline {
+    display: contents;
+}
+
+.chart_config {
+    display: inline-flex;
+}
+
+.bottom_config div {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10px;
+}
+
+input[type="checkbox"]{
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    margin-right: -5px;
+}
+
+.map {
+    height: 500px;
+    width: 100%;
+}
+
+#capture {
+    height: 360px;
+    width: 480px;
+    overflow: hidden;
+    float: left;
+    background-color: #ECECFB;
+    border: thin solid #333;
+    border-left: none;
+}
+
+.label {
+   color: #000;
+   background-color: white;
+   border: 1px solid #000;
+   font-family: "Lucida Grande", "Arial", sans-serif;
+   font-size: 12px;
+   text-align: center;
+   white-space: nowrap;
+   padding: 2px;
+}
+
+.label.green {
+   background-color: #58D400;
+}
+
+
+/* -------- NEW CSS ---------- */
+.simple_header{
+    overflow: hidden;
+    height: 60%;
+    box-shadow: inset 0px 0px 10px 20px #111;
+    position: relative;
+}
+
+header img {
+    width: 100%;
+}
+
+#navbar {
+    height: 45px;
+    background: #fafafa;;
+    width: 100%;
+    margin-top: -1%;
+}
+
+#icon {
+    position: relative;
+    width: 20px;
+    margin-left: 1.2%;
+    margin-top: 0.8%;
+    color: white;
+}
+
+
+*:focus {
+    outline: 0 !important;
+}
+
+.mdl-layout__drawer.is-visible::-webkit-scrollbar, .mdl-layout__drawer::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(186, 203, 234);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(139, 149, 167);
+}
+
+#drawer {
+    background-color: #b0bec5;
+    color: #fafafa;
+}
+
+#teste {
+    width: 83%;
+    margin-left: 17%;
+}
+
+
+/*  SEARCH BAR  */
+.mdh-expandable-search {
+    margin: 0 50px 5%;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    width: 100%;
+    margin-left: 0%;
+} 
+  
+.mdh-expandable-search, .mdh-expandable-search input {
+    flex-grow: 1;
+}
+  
+/* Position search icon */
+.mdh-expandable-search  .material-icons {
+    position: relative;
+    right: -40px;
+    margin-left: -24px; /* Remove the blank space left behind by the icon being relatively positioned */
+}
+  
+.mdh-expandable-search input {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    background-color: rgb(94, 105, 108);
+    padding: 0px 0px 0px 55px;
+    height: 40px;
+    color: white;
+    line-height: 40px; /* TODO: This was recommended for cross browser compatability of input height, check if its actually needed in modern browsers */
+    
+    border-radius: 5px 5px 5px 5px;
+}
+
+.material-icons {
+    color: black; /* why white? no mobile se for white n da para ver */
+}
+
+::placeholder {
+    color: black;
+}
+
+.form-input-text, select {
+    text-align: left;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 3px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid cornflowerblue;
+    display: block;
+    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.modal-body {
+    margin: auto;
+}
+
+select[name=status], input[name=status] {
+    margin-left: 5px;
+}
+
+.form-input-text:focus {
+    background-color: lightsteelblue;
+    border: 1px solid blue;
+}
+
+.popup_inline {
+    display: grid;
+    column-gap: 80px;
+}
+
+.first_column {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.second_column {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.img_button {
+    margin-left: 5px !important;
+    width: 12px !important;
+    cursor: pointer !important;
+}
+
+.second_column span, .station_inline, .add_device_add span {
+    display: -webkit-box;
+    margin-bottom: 10px;
+}
+
+.delete_device, .delete_station {
+    margin-top: 10px;
+}
