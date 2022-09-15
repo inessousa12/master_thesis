@@ -7,6 +7,7 @@ from os.path import isfile, join, isdir
 import copy
 import matplotlib.pyplot as plt
 import numpy as np
+from functions import load_raw_saturn
 # from .functions import load_raw_saturn
 
 import functions
@@ -33,8 +34,8 @@ def start_report(report_data, threshold):
     start = datetime.strptime("2021-08-18 00:00", "%Y-%m-%d %H:%M").timestamp()
     end = datetime.strptime("2021-10-18 23:45", "%Y-%m-%d %H:%M").timestamp()
 
-    os.makedirs(f"./aquaIoT/framework/report/{int(threshold * 10000)}/", exist_ok=True)
-    files = listdir(f"./aquaIoT/framework/report/{int(threshold * 10000)}/")
+    os.makedirs(f"./framework/report/{int(threshold * 10000)}/", exist_ok=True)
+    files = listdir(f"./framework/report/{int(threshold * 10000)}/")
 
     models = PredictionBlock.startup_models()
     new_times = []
@@ -46,7 +47,7 @@ def start_report(report_data, threshold):
         sensor_name = snames[i]
         current_models = models[sensor_name]
 
-        predictions_file = f"./aquaIoT/framework/report/{snames[i]}_predictions.npy"
+        predictions_file = f"./framework/report/{snames[i]}_predictions.npy"
         if isfile(predictions_file):
             predictions = np.load(predictions_file, allow_pickle=True).item()
 
@@ -127,7 +128,7 @@ def start_report(report_data, threshold):
                 ps = []
                 for m in current_models:
                     model = m['model']
-                    # model.compile(optimizer='adam', loss="mean_squared_error", metrics=[], )
+                    model.compile(optimizer='adam', loss="mean_squared_error", metrics=[], )
                     if m['sizeM'] == 'all':
                         prediction = model.predict((input,))[0][0]
                     elif m['sizeM'] == 'self':
@@ -158,7 +159,7 @@ def start_report(report_data, threshold):
 
             np.save(predictions_file, predictions)
 
-        np.save(f"./aquaIoT/framework/report/{int(threshold * 10000)}/{snames[i]}_faults{int(threshold * 10000)}.npy",
+        np.save(f"./framework/report/{int(threshold * 10000)}/{snames[i]}_faults{int(threshold * 10000)}.npy",
                 quality[snames[i]])
 
     for i in range(len(snames)):
@@ -201,7 +202,7 @@ def start_report(report_data, threshold):
         plt.tight_layout()
         plt.gca().spines['right'].set_visible(False)
         plt.gca().spines['top'].set_visible(False)
-        plt.savefig(f'./aquaIoT/framework/report/{int(threshold * 10000)}/{snames[i]}.png',
+        plt.savefig(f'./framework/report/{int(threshold * 10000)}/{snames[i]}.png',
                     bbox_inches='tight', dpi=150, block=False)
         plt.clf()
 
@@ -225,7 +226,7 @@ def start_report(report_data, threshold):
         plt.tight_layout()
         plt.gca().spines['right'].set_visible(False)
         plt.gca().spines['top'].set_visible(False)
-        plt.savefig(f'./aquaIoT/framework/report/{int(threshold * 10000)}/{snames[i]}_corrected.png',
+        plt.savefig(f'./framework/report/{int(threshold * 10000)}/{snames[i]}_corrected.png',
                     bbox_inches='tight', dpi=150, block=False)
         plt.clf()
 
@@ -252,7 +253,7 @@ def start_report(report_data, threshold):
         plt.tight_layout()
         plt.gca().spines['right'].set_visible(False)
         plt.gca().spines['top'].set_visible(False)
-        plt.savefig(f'./aquaIoT/framework/report/{int(threshold * 10000)}/{snames[i]}_quality.png',
+        plt.savefig(f'./framework/report/{int(threshold * 10000)}/{snames[i]}_quality.png',
                     bbox_inches='tight', dpi=150, block=False)
         plt.clf()
 
@@ -295,12 +296,12 @@ def start_report(report_data, threshold):
                 report['RFP'][current_name] = f'{((current_detected - 11) / (count[current_name] - 11)) * 100:.5f}%'
         elif current_name == 'lnec':
             if current_detected < 5:
-                report['RD'][current_name] = f'{(current_detected / 5) * 100:.5f}%'
+                report['RD'][current_name] = f'{(current_detected / 3) * 100:.5f}%'
             else:
                 report['RD'][current_name] = '100.00%'
-                report['RFP'][current_name] = f'{((current_detected - 5) / (count[current_name] - 5)) * 100:.5f}%'
+                report['RFP'][current_name] = f'{((current_detected - 3) / (count[current_name] - 3)) * 100:.5f}%'
 
-    with open(f'./aquaIoT/framework/report/{int(threshold * 10000)}/report{int(threshold * 10000)}.json', 'w') as file:
+    with open(f'./framework/report/{int(threshold * 10000)}/report{int(threshold * 10000)}.json', 'w') as file:
         file.write(json.dumps(report, indent=4, sort_keys=True))
     exit('DONE')
 
@@ -340,7 +341,7 @@ def build_data(path):
         sensor_name = file_name.split('_')[0]
 
         if ".mat" in file_name or ".csv" in file_name or ".json" in file_name:
-            data_times, data_values = load_raw(file_path)
+            data_times, data_values = load_raw_saturn(file_path)
         else:
             result = load_processed([file_path])
             data_times, data_values = result[0], result[1]

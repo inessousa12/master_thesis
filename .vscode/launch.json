@@ -18,10 +18,10 @@
             "name": "server",
             "type": "python",
             "request": "launch",
-            "program": "framework/scripts/app_server.py",
+            "program": "framework\\scripts\\report.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["./framework/scripts/configuration_processing.json"]
+            "args": ["framework\\data\\raw_other\\lnec\\sal", "0.9800"]
         }
     ]
     // "compounds": [

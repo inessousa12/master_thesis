@@ -156,13 +156,10 @@ class QualityBlock:
             p = predictions[i]
             error = errors[i]
             cdf = self.load_cdf(p[0])
-            print(p[0])
             ann_type = p[1]
 
             probability = self.calculate_cdf_probability(error, cdf)
             probabilities.append(probability)
-
-            print("probability: ", probabilities)
 
             if probability < threshold:
                 isSimilar.append((True, error, probability, ann_type))

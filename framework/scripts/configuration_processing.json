@@ -3,7 +3,7 @@
         "run_periods_self": 10,
         "run_periods_others": 0,
         "approach": 1,
-        "cdf_threshold": 0.9985,
+        "cdf_threshold": 0.9970,
         "skip_period": 0,
         "period_time": 900
     },

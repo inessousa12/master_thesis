@@ -38,8 +38,6 @@ services:
     container_name: grafana
     ports:
       - 3000:3000
-    # networks:
-    #   - local
     depends_on:
       - mysql
 
@@ -50,8 +48,6 @@ services:
       - framework:/tmp/framework_data
     ports:
       - 9999:9999
-    # networks:
-    #   - local
     depends_on:
       - mysql
 
@@ -70,8 +66,6 @@ services:
   mysql:
     container_name: mysql
     image: mysql
-    # volumes:
-    #   - mysql:/tmp/mysql_data
     volumes:
       - ./mysql:/docker-entrypoint-initdb.d
       - mysql:/var/lib/mysql
@@ -96,9 +90,6 @@ services:
       - MYSQL_ROOT_PASSWORD=password
     depends_on:
       - mysql
-
-# networks:
-#   local:
       
 volumes:
   flask:

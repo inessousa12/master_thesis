@@ -77,7 +77,7 @@ class SensorHandler:
             self.sensors_data[sensor].get_values_in_csv()
             print("outfile values done")
 
-            with open('./aquaIoT/framework/data/' + sensor + '/' + sensor + '_out_file_predictions.csv', 'w', encoding='UTF8', newline='') as f:
+            with open('./data/' + sensor + '/' + sensor + '_out_file_predictions.csv', 'w', encoding='UTF8', newline='') as f:
                 writer = csv.writer(f)
 
                 values = []
@@ -121,9 +121,6 @@ class SensorHandler:
             values = self.prediction_queue.get()
             inserted_values_indexes = values[0]
 
-            if len(inserted_values_indexes) > 4:
-                print("aqui")
-
             sensor = values[1]
 
             for index in inserted_values_indexes:
@@ -141,27 +138,20 @@ class SensorHandler:
                     sensor, index = self.quality_queue.get()
                     predictions = self.predictions_data[sensor][index]
                     actual = self.sensors_data[sensor].get(index)
-                    
-                    to_replace = False
-
                     quality = 1
-
-                    if actual['value'] is None:
-                        quality = 0
-                        to_replace = True
-                        now = datetime.now()
                         
-                        print(f'[{now:%Y-%m-%d %H:%M:%S}] [{sensor} at index [{index}]: OMISSION FAULT DETECTED]')
-                    elif not actual['prediction']:
+                        
+                    if not actual['prediction']:
                         m = actual['value']
                         p = [i[2] for i in predictions]
                         
-                        errors = self.quality_block.calculate_error(m, p)
-                        faulty, probabilities = self.quality_block.fault_detection(predictions, errors)
+                        if m is not None:
+                            errors = self.quality_block.calculate_error(m, p)
+                            faulty, probabilities = self.quality_block.fault_detection(predictions, errors)
+                        else:
+                            faulty = True
 
-                        if faulty == True:
-                            print("aqui")
-
+                        to_replace = False
                         if not faulty:
                             quality = self.quality_block.quality_calculation(probabilities)
                         else:
@@ -179,7 +169,11 @@ class SensorHandler:
                     if to_replace:
                         mean_predictions = statistics.mean(p)
                         self.sensors_data[sensor].put_prediction(mean_predictions, index)
+                    else:
+                        self.sensors_data[sensor].set_true_value(index)
 
                     self.quality_data[sensor][index] = quality
+                    self.sensors_data[sensor].set_quality(index, quality)
+                    self.sensors_data[sensor].insert_into_db(self.sensors_data[sensor].get(index))
 
     

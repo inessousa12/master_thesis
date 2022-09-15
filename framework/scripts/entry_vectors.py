@@ -66,8 +66,6 @@ def build1_input(new_times, times, values, idx_target, run_periods_self, run_per
         last_val = 0
         increment = 0
 
-        print("times array: ", times_array)
-
         input_times.append([])
         indexes = []
         count = 0
@@ -90,9 +88,7 @@ def build1_input(new_times, times, values, idx_target, run_periods_self, run_per
             last_val = input_idx
             indexes.append(input_idx)
             input_times[0].append(times[0][input_idx])
-            # print("value: ", values[0][input_idx])
 
-            # print("type: ", type(values[0][input_idx].item()))
             try:
                 inputs.append(values[0][input_idx].item())
             except AttributeError:
@@ -143,6 +139,10 @@ def build1_input(new_times, times, values, idx_target, run_periods_self, run_per
 
                 last_val = input_idx
                 input_times[j].append(times[j][input_idx])
-                inputs.append(values[j][input_idx])
+
+                try:
+                    inputs.append(values[0][input_idx].item())
+                except AttributeError:
+                    inputs.append(values[0][input_idx])
 
     return inputs, input_times

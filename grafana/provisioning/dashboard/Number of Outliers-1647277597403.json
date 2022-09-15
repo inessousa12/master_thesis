@@ -65,14 +65,14 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "count"
+            "lastNotNull"
           ],
-          "fields": "/^failure_type \\{metric=\"temp\", sensor=\"lnec\"\\}$/",
+          "fields": "/^COUNT\\(`failure_type`\\)$/",
           "values": false
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.1.2",
       "targets": [
         {
           "datasource": {
@@ -113,7 +113,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 36,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {

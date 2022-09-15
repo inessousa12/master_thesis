@@ -65,14 +65,14 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "count"
+            "lastNotNull"
           ],
-          "fields": "/^failure_type \\{metric=\"temp\", sensor=\"lnec\"\\}$/",
+          "fields": "/^COUNT\\(`failure_type`\\)$/",
           "values": false
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.0.2",
+      "pluginVersion": "9.1.2",
       "targets": [
         {
           "datasource": {
@@ -112,15 +112,15 @@
       "type": "stat"
     }
   ],
-  "refresh": "",
-  "schemaVersion": 36,
+  "refresh": "5s",
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},

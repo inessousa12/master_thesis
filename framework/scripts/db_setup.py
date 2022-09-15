@@ -1,10 +1,6 @@
 import mysql.connector
 import datetime, time
 
-database = "aquamon"
-user = "aquamon"
-password = "password"
-host = "mysql"
 
 def insert_station(message):
     """
@@ -13,11 +9,12 @@ def insert_station(message):
     Args:
         message (json): json with station information
     """
-    cnx = mysql.connector.connect(user=user, password=password,
-                            host=host,
-                            database=database,
-                            use_pure=False,
-                            port = 3306)
+    cnx = mysql.connector.connect(
+                        host="mysql",
+                        port=3306,
+                        user="aquamon",
+                        password="password",
+                        database="aquamon")
     cursor = cnx.cursor()
 
     sql = "INSERT INTO `station` (`name`, `latitude`, `longitude`) SELECT * FROM (SELECT '" + \
@@ -38,11 +35,13 @@ def insert_data(message):
     Args:
         message (json): json with the parameters to insert the measurement into MySQL
     """
-    cnx = mysql.connector.connect(user=user, password=password,
-                              host=host,
-                              database=database,
-                              use_pure=False,
-                              port = 3306)
+    cnx = mysql.connector.connect(
+                        host="mysql",
+                        port=3306,
+                        user="aquamon",
+                        password="password",
+                        database="aquamon",
+                        auth_plugin='mysql_native_password')
     cursor = cnx.cursor()
 
     cursor.execute("SELECT `id` FROM `station` WHERE `name` = '" + message["sensor"] + "';")
@@ -54,21 +53,33 @@ def insert_data(message):
         metric = message["type"]
         
     sql = "INSERT INTO `metric` (`name`) SELECT * FROM (SELECT '" + \
-        metric + ") AS tmp WHERE NOT EXISTS (" + \
+        metric + "') AS tmp WHERE NOT EXISTS (" + \
         "SELECT `name` FROM `metric` WHERE `name` = '" + metric + "');"
 
     cursor.execute(sql)
 
     cnx.commit()
 
-    # timestamp = datetime.datetime.fromtimestamp(message["time"]).strftime('%Y-%m-%d %H:%M:%S')
     timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
     sql = ("INSERT INTO `measurement` (`station_id`, `metric_name`, `raw_value`, `corrected_value`, `quality`, `failure`, `failure_type`, `timestamp`) " + \
-            "VALUES (" + str(sensor_id[0][0]) + ", '" + metric + "', " + str(message["true_value"]) + ", " + str(message["value"]) + \
-            ", " + str(message["quality"]) + ", " + str(message["failure"]) + ", '" + message["failure_type"] + "', '" + timestamp + "');")
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s);")
 
-    cursor.execute(sql)
+    if str(message["failure"]) == False:
+        failure = 0
+    else:
+        failure = 1
+
+    if message["true_value"] == None:
+        cursor.execute(sql, (str(sensor_id[0][0]), metric, None, str(message["value"]), str(message["quality"]), failure, message["failure_type"], timestamp))
+    else:
+        cursor.execute(sql, (str(sensor_id[0][0]), metric, str(message["true_value"]), str(message["value"]), str(message["quality"]), failure, message["failure_type"], timestamp))
+
+    # sql = ("INSERT INTO `measurement` (`station_id`, `metric_name`, `raw_value`, `corrected_value`, `quality`, `failure`, `failure_type`, `timestamp`) " + \
+    #         "VALUES (" + str(sensor_id[0][0]) + ", '" + metric + "', " + str(message["true_value"]) + ", " + str(message["value"]) + \
+    #         ", " + str(message["quality"]) + ", " + str(message["failure"]) + ", '" + message["failure_type"] + "', '" + timestamp + "');")
+
+    # cursor.execute(sql)
 
     cnx.commit()
 

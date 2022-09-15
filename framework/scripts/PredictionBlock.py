@@ -176,7 +176,7 @@ class PredictionBlock:
         """
         models = {}
 
-        models_folder = f'./aquaIoT/framework/ann/models/'
+        models_folder = f'./ann/models/'
         folders_found = os.listdir(models_folder)
 
         if folders_found == 0:

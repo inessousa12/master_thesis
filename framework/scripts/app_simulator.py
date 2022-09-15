@@ -9,7 +9,7 @@ from Server import Server
 
 import functions
 
-HOST = 'localhost'
+HOST = '127.0.0.1'
 PORT = 9999
 
 
@@ -53,7 +53,6 @@ def build_data(data):
 
     for sensor in sensors:
         data_times, data_values = functions.load_raw_saturn(sensor["path"])
-        print(data_times)
 
         temp_list = []
         for i in range(len(data_values)):

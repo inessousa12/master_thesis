@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 import csv
-# import db_setup
+import db_setup
 
 class SensorData:
     """
@@ -121,7 +121,6 @@ class SensorData:
                         self.__data.append({'time': last_measurement_time + self.period_time, 'value': None, 'type': 'temp', 'sensor': self.sensor_name, "prediction": False, "failure": True, "failure_type": "omission"})
                         last_measurement_time = last_measurement_time + self.period_time
                         appended_indexes.append(len(self.__data) - 1)
-                        print("omission detected at ", len(self.__data) - 1)
                     to_append = True
                 else:
                     to_append = True
@@ -213,7 +212,7 @@ class SensorData:
         """
         Puts values and times in a csv
         """
-        with open('./aquaIoT/framework/data/' + self.sensor_name + '/' + self.sensor_name + '_out_file.csv', 'w', encoding='UTF8', newline='') as f:
+        with open('./data/' + self.sensor_name + '/' + self.sensor_name + '_out_file.csv', 'w', encoding='UTF8', newline='') as f:
             writer = csv.writer(f)
 
             values = [i["value"] for i in self.__data]
@@ -224,17 +223,7 @@ class SensorData:
             for elem in zipped:
                 writer.writerow(elem)
 
-        # with open('./data/' + self.sensor_name + '/' + self.sensor_name + '_raw_file.csv', 'w', encoding='UTF8', newline='') as f:
-        #     writer = csv.writer(f)
-
-        #     values, time = self.get_raw_values()
-
-        #     zipped = list(zip(time, values))
-
-        #     for elem in zipped:
-        #         writer.writerow(elem)
-
-        with open('./aquaIoT/framework/data/' + self.sensor_name + '/' + self.sensor_name + '_outliers_file.csv', 'w', encoding='UTF8', newline='') as f:
+        with open('./data/' + self.sensor_name + '/' + self.sensor_name + '_outliers_file.csv', 'w', encoding='UTF8', newline='') as f:
             writer = csv.writer(f)
             values, time = [i["true_value"] for i in self.__raw_data if i["failure_type"] == "outlier"], [i["time"] for i in self.__raw_data if i["failure_type"] == "outlier"]
 
