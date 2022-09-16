@@ -5,7 +5,7 @@
         "approach": 1,
         "cdf_threshold": 0.9970,
         "skip_period": 0,
-        "period_time": 900
+        "period_time": 60
     },
     "communication": {
         "host": "",

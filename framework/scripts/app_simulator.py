@@ -128,12 +128,13 @@ def send(data, sleep_t):
     while not is_empty(data):
         item = popMultiple(data)
         msg = json.dumps(item)
+        # msg = item
         print(msg)
         serv_sock.send_message(msg)
 
-        current = item['time']
-        if last is None:
-            last = current
+        # current = item['time']
+        # if last is None:
+        #     last = current
 
         if sleep_t == 0:
             pass

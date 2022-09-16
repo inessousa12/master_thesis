@@ -119,7 +119,7 @@ def build_multiple(raw_folder, save_folder, run_periods_self, run_periods_others
     raw_sizes = []
     
     for file in files_names:
-        data_temp_times, data_temp_values = load_raw_saturn(raw_folder + file)
+        data_temp_times, data_temp_values = load_raw(raw_folder + file)
         raw_times.append(data_temp_times)
         raw_values.append(data_temp_values)
         raw_sizes.append(len(data_temp_times))
@@ -287,8 +287,8 @@ def generate1(target_time, sizes, times, values, skip_period, run_periods_self,
     
     idx_target = None
     for i in range(len(new_times)):
-        times_g = new_times[i][0][0]
-        if times_g == target_time:
+        # times_g = new_times[i][0][0]
+        if target_time - times[i][0] >= 43200:
             idx_target = i
     if idx_target is None:
         return None, None

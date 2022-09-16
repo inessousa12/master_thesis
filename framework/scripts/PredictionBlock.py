@@ -59,6 +59,9 @@ class PredictionBlock:
         min_time = sensors[sensor].get(0)["time"] + ((720) * 60)
         target_time = sensors[sensor].get(appended_index)["time"]
         diff = target_time - min_time
+        print("min_time:", min_time, flush=True)
+        print("target_time:", target_time, flush=True)
+        print("diff: ", diff, flush=True)
 
         if diff > 0:
             diffs = []
@@ -66,6 +69,7 @@ class PredictionBlock:
             for sn in sensor_names:
                 current_min_time = sensors[sn].get(0)["time"] + ((720) * 60)
                 current_diff = target_time - current_min_time
+                print("current_diff: ", current_diff, flush=True)
                 diffs.append(current_diff)
             diffs = [i for i in diffs if i > 0]
 
