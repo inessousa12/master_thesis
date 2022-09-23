@@ -128,7 +128,7 @@ def start_report(report_data, threshold):
                 ps = []
                 for m in current_models:
                     model = m['model']
-                    model.compile(optimizer='adam', loss="mean_squared_error", metrics=[], )
+                    # model.compile(optimizer='adam', loss="mean_squared_error", metrics=[], )
                     if m['sizeM'] == 'all':
                         prediction = model.predict((input,))[0][0]
                     elif m['sizeM'] == 'self':

@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 import csv
-import db_setup
+# import db_setup
 
 class SensorData:
     """
@@ -232,8 +232,8 @@ class SensorData:
             for elem in zipped:
                 writer.writerow(elem)
 
-    def insert_into_db(self, message):
-        db_setup.insert_data(message)
+    # def insert_into_db(self, message):
+    #     db_setup.insert_data(message)
 
     def set_quality(self, index, quality):
         self.__data[index]["quality"] = quality

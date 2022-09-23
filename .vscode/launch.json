@@ -21,7 +21,7 @@
             "program": "framework\\scripts\\report.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": ["framework\\data\\raw_other\\lnec\\sal", "0.9800"]
+            "args": ["framework\\data\\raw_other\\lnec\\sal", "0.9985"]
         }
     ]
     // "compounds": [

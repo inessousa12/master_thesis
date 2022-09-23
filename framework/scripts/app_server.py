@@ -9,6 +9,7 @@ from datetime import datetime
 from multiprocessing import Condition, Queue
 import threading
 import time, functions
+import codecs
 
 from SensorHandler import SensorHandler
 import db_setup
@@ -25,37 +26,35 @@ def communicate(cond):
     Args:
         cond ([Condition]): lock condition
     """
-    print("ola")
-
     while True:
         try:
             
-            connbuf = sock_utils.buffer(conn_sock)
-            data = connbuf.get_bytes(4) #9 fields X 8 bytes of each float 
-            size = struct.unpack('!i', data)[0]
-            print(size)
+            # connbuf = sock_utils.buffer(conn_sock)
+            # data = connbuf.get_bytes(4) #9 fields X 8 bytes of each float 
+            # size = struct.unpack('!i', data)[0]
+            # print(size)
             
-            data_to_unpack = connbuf.get_bytes(size) #9 fields X 8 bytes of each float 
-            print(data_to_unpack)    
+            # data_to_unpack = connbuf.get_bytes(size) #9 fields X 8 bytes of each float 
+            # print(data_to_unpack)    
     
             #Received data from client
-            # size_bytes = sock_utils.receive_all(conn_sock, 4)
-            # size = struct.unpack('!i', size_bytes)[0]
+            size_bytes = sock_utils.receive_all(conn_sock, 4)
+            size = struct.unpack('!i', size_bytes)[0]
 
-            # msg_bytes = sock_utils.receive_all(conn_sock, data_to_unpack)
-            # msg_bytes = pickle.loads(msg_bytes)
+            msg_bytes = sock_utils.receive_all(conn_sock, size)
+            recvCmd = pickle.loads(msg_bytes)
             # print(msg_bytes)
-            try:
-                # recvCmd = pickle.loads(data_to_unpack)
-                data = json.loads(data_to_unpack.decode("utf-8"), strict=False)
-            except Exception as e:
-                print(e)
+            # try:
+            #     # recvCmd = pickle.loads(data_to_unpack)
+            #     data = json.loads(codecs.decode(msg_bytes))
+            # except Exception as e:
+            #     print(e)
             cond.acquire()
 
-            # data = json.loads(recvCmd)
+            data = json.loads(recvCmd)
             dataQueue.put(data)
             
-            print(data, flush=True)
+            # print(data, flush=True)
             
 
             cond.notify()
@@ -86,7 +85,7 @@ def processing(cond, sensor_handler):
                 # break
         
         data = dataQueue.get()
-        print("data:", data, flush=True)
+        # print("data:", data, flush=True)
 
         sensor_handler.append(data)
             

@@ -5,7 +5,7 @@
         "approach": 1,
         "cdf_threshold": 0.9970,
         "skip_period": 0,
-        "period_time": 60
+        "period_time": 900
     },
     "communication": {
         "host": "",
@@ -13,7 +13,7 @@
     },
     "sensors" : [{
         "sensor_id": "lnec",
-        "path": "data\\raw_other\\lnec\\temp\\lnec_data_set01_set08.csv",
+        "path": "data\\raw_other\\lnec\\sal\\lnec_sal_test.csv",
         "data_type": "temp",
         "latitude": 38.644858,
         "longitude": -9.1046928

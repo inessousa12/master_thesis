@@ -159,7 +159,7 @@ def calculate_cdf(model, ann_cfg, i):
         plt.hist(quadratic_errors, bins=200)
         plt.gca().spines['right'].set_visible(False)
         plt.gca().spines['top'].set_visible(False)
-        plt.savefig(save_folder + "hist.png", bbox_inches='tight', dpi=150, block=False)
+        plt.savefig(save_folder + "hist.pdf", bbox_inches='tight', dpi=150, block=False)
         plt.clf()
 
         # ------------------------------------PDF FIT-------------------------------------------
@@ -170,7 +170,7 @@ def calculate_cdf(model, ann_cfg, i):
         plt.legend(loc='best')
         plt.gca().spines['right'].set_visible(False)
         plt.gca().spines['top'].set_visible(False)
-        plt.savefig(save_folder + "pdf.png", bbox_inches='tight', dpi=150, block=False)
+        plt.savefig(save_folder + "pdf.pdf", bbox_inches='tight', dpi=150, block=False)
         plt.clf()
 
         # ------------------------------------CDF FIT-------------------------------------------
@@ -180,9 +180,10 @@ def calculate_cdf(model, ann_cfg, i):
         plt.plot(quadratic_errors, cdf['y'], color='purple', alpha=0.8, label='Square Errors', linewidth=0.9)
         plt.plot(cdf['x'], cdf['y'], color='red', label='Log-Logistic Fit', linewidth=1.5)
         plt.legend(loc='best')
+        plt.tight_layout()
         plt.gca().spines['right'].set_visible(False)
         plt.gca().spines['top'].set_visible(False)
-        plt.savefig(save_folder + "cdf.png", bbox_inches='tight', dpi=150, block=False)        
+        plt.savefig(save_folder + "cdf.pdf", bbox_inches='tight', dpi=150, block=False)        
 
         return cdf
 
@@ -322,7 +323,7 @@ def save_models(ann_cfg):
         print("SAVE FOLDER", save_folder)
         functions.save_data(cdf, save_folder + "/cdf.npz")
         functions.save_loss(loss, save_folder + "/loss.json")
-        model.save(save_folder + "saved_model.h5")
+        model.save(save_folder)
 
     print("Models Saved...")
 

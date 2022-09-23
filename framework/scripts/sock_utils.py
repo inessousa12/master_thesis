@@ -26,7 +26,7 @@ class buffer:
             self.buffer += data
 
         data,_,self.buffer = self.buffer.partition(b'\x00')
-        print("data: ", data)
+        # print("data: ", data)
         return data.decode()
 
 def create_tcp_server_socket(address, port, queue_size):

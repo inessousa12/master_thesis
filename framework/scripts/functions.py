@@ -119,7 +119,7 @@ def build_multiple(raw_folder, save_folder, run_periods_self, run_periods_others
     raw_sizes = []
     
     for file in files_names:
-        data_temp_times, data_temp_values = load_raw(raw_folder + file)
+        data_temp_times, data_temp_values = load_raw_saturn(raw_folder + file)
         raw_times.append(data_temp_times)
         raw_values.append(data_temp_values)
         raw_sizes.append(len(data_temp_times))
@@ -281,21 +281,21 @@ def generate1(target_time, sizes, times, values, skip_period, run_periods_self,
     """
     # if new_times is None:
     new_times = build_new_times(times, sizes, skip_period)
-
+    # print("new_times: ", new_times)
     if len(new_times) < run_periods_self:
         return None, None
     
     idx_target = None
     for i in range(len(new_times)):
         # times_g = new_times[i][0][0]
-        if target_time - times[i][0] >= 43200:
+        if target_time - times[0][0] >= 43200:
             idx_target = i
     if idx_target is None:
         return None, None
 
     input, input_times = entry_vectors.build1_input(new_times, times, values, idx_target,
                                       run_periods_self, run_periods_others)
-
+    # print(input)
     return input, input_times
 
 
@@ -450,7 +450,7 @@ def load_raw(path):
         with open(path, 'r') as file:
             csvreader = csv.reader(file)
             for row in csvreader:
-                print(row)
+                # print(row)
                 if row[1] != '':
                     times.append(row[0])
                     values.append(float(row[1]))
@@ -494,9 +494,9 @@ def load_raw_saturn(path):
         with open(path, 'r', encoding='utf-8-sig') as file:
             csvreader = csv.reader(file)
             for row in csvreader:
-                print(row)
+                # print(row)
                 row = row[0].split(";")
-                times.append(datetime.datetime.timestamp(datetime.datetime.strptime(row[0], '%Y-%m-%d %H:%M')))
+                times.append(datetime.datetime.timestamp(datetime.datetime.strptime(row[0], '%d/%m/%Y %H:%M')))
                 values.append(float(row[1]))
         return times, values
     else:

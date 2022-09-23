@@ -63,6 +63,7 @@ def build1_input(new_times, times, values, idx_target, run_periods_self, run_per
             #last ten
             times_array = np.ceil(np.linspace(np.log(1), 9, 10))
 
+        # print("times array: ", times_array)
         last_val = 0
         increment = 0
 

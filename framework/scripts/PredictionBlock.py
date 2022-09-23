@@ -59,9 +59,9 @@ class PredictionBlock:
         min_time = sensors[sensor].get(0)["time"] + ((720) * 60)
         target_time = sensors[sensor].get(appended_index)["time"]
         diff = target_time - min_time
-        print("min_time:", min_time, flush=True)
-        print("target_time:", target_time, flush=True)
-        print("diff: ", diff, flush=True)
+        # print("min_time:", min_time, flush=True)
+        # print("target_time:", target_time, flush=True)
+        # print("diff: ", diff, flush=True)
 
         if diff > 0:
             diffs = []
@@ -69,7 +69,7 @@ class PredictionBlock:
             for sn in sensor_names:
                 current_min_time = sensors[sn].get(0)["time"] + ((720) * 60)
                 current_diff = target_time - current_min_time
-                print("current_diff: ", current_diff, flush=True)
+                # print("current_diff: ", current_diff, flush=True)
                 diffs.append(current_diff)
             diffs = [i for i in diffs if i > 0]
 
@@ -180,7 +180,7 @@ class PredictionBlock:
         """
         models = {}
 
-        models_folder = f'./ann/models/'
+        models_folder = f'./framework/ann/models/'
         folders_found = os.listdir(models_folder)
 
         if folders_found == 0:
@@ -199,7 +199,7 @@ class PredictionBlock:
             typeM = folder.split('_')[1]
             sizeM = folder.split('_')[2]
 
-            model = keras.models.load_model(folder, compile=False)
+            model = keras.models.load_model(folder + "/saved_model.h5", compile=False)
 
             if sensor_name not in models:
                 models[sensor_name] = []

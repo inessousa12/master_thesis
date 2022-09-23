@@ -105,6 +105,7 @@ class SensorHandler:
         Args:
             data ([dict]): data to be appended.
         """
+        # print(data)
         sensor = data["sensor"]
         if sensor not in self.sensors_data:
             self.sensors_data[sensor] = SensorData(sensor, self.run_periods_self, self.period_time)
