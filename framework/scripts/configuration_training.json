@@ -8,7 +8,7 @@
         "output_layer": 1,
         "loss_function": "mean_squared_error",
         "sensor": "lnec",
-        "metric": "temp",
+        "metric": "height",
         "inputs": "self",
         "id": 1,
         "n_other_sensors": 0,
@@ -19,15 +19,15 @@
         "checkpoint_path": "ann/training/",
         "model_save_path": "ann/models/",
         "data_path": [
-            "data\\processed\\05jul_2022-20sept_2022\\temp\\lnec.npz"
+            "data\\processed\\05jul_2022-20sept_2022\\height\\lnec.npz"
         ],
-        "cdf_data_path": "data\\processed\\05jul_2022-20sept_2022\\temp\\lnec.npz",
+        "cdf_data_path": "data\\processed\\05jul_2022-20sept_2022\\height\\lnec.npz",
         "runs": 10
     },
     "training_sets": {
         "raw_path": "data/raw_main/",
         "save_path": "data/processed/",
-        "metrics": ["temp"],
+        "metrics": ["height"],
         "n_sensors": 1,
         "run_periods_self": 10,  
         "run_periods_others": 0, 

@@ -323,7 +323,7 @@ def save_models(ann_cfg):
         print("SAVE FOLDER", save_folder)
         functions.save_data(cdf, save_folder + "/cdf.npz")
         functions.save_loss(loss, save_folder + "/loss.json")
-        model.save(save_folder)
+        model.save(save_folder + "saved_model.h5")
 
     print("Models Saved...")
 
