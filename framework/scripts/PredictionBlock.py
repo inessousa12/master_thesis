@@ -180,7 +180,7 @@ class PredictionBlock:
         """
         models = {}
 
-        models_folder = f'./framework/ann/models/'
+        models_folder = f'./ann/models/'
         folders_found = os.listdir(models_folder)
 
         if folders_found == 0:
@@ -199,7 +199,7 @@ class PredictionBlock:
             typeM = folder.split('_')[1]
             sizeM = folder.split('_')[2]
 
-            model = keras.models.load_model(folder + "/saved_model.h5", compile=False)
+            model = keras.models.load_model(folder +"/saved_model.h5", compile=False)
 
             if sensor_name not in models:
                 models[sensor_name] = []

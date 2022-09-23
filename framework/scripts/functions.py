@@ -496,7 +496,7 @@ def load_raw_saturn(path):
             for row in csvreader:
                 # print(row)
                 row = row[0].split(";")
-                times.append(datetime.datetime.timestamp(datetime.datetime.strptime(row[0], '%d/%m/%Y %H:%M')))
+                times.append(datetime.datetime.timestamp(datetime.datetime.strptime(row[0], '%Y-%m-%d %H:%M')))
                 values.append(float(row[1]))
         return times, values
     else:
