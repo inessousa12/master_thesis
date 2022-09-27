@@ -89,7 +89,7 @@ def build(data_cfg):
             current_raw_folder = raw_folder + "/" + metric + "/"
 
             if not isdir(current_raw_folder):
-                print("No Folder for \"" + metric + "\" found. Continuing...")
+                print("No Folder for /"" + metric + "/" found. Continuing...")
                 continue
 
             current_save_folder = raw_folder + "/" + metric + "/"

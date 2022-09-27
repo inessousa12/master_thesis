@@ -19,9 +19,9 @@
         "checkpoint_path": "ann/training/",
         "model_save_path": "ann/models/",
         "data_path": [
-            "data\\processed\\05jul_2022-20sept_2022\\height\\lnec.npz"
+            "data/processed/05jul_2022-20sept_2022/height/lnec.npz"
         ],
-        "cdf_data_path": "data\\processed\\05jul_2022-20sept_2022\\height\\lnec.npz",
+        "cdf_data_path": "data/processed/05jul_2022-20sept_2022/height/lnec.npz",
         "runs": 10
     },
     "training_sets": {

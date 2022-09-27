@@ -34,11 +34,15 @@
 		<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
 		<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
 		<script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+		<script type="text/javascript">
+			var php_var = "<?php echo $_SERVER['SERVER_NAME']; ?>";
+		</script>
 		<script src="js/sidebar_slide.js"></script>
 		<script src="js/sidebar.js"></script>
 		<script src="js/map.js"></script>
 		<script src="js/measurement_graphs.js"></script>
 		<script src="js/bd_functions.js"></script>
+		
 		
 	</head>
 	
@@ -115,16 +119,15 @@
 
 							<div class="mdl-cell mdl-cell--6-col">
 								<div id="realtime-chart">
-									<iframe src="http://localhost:3000/d-solo/ORwev7L7z/quality-mean?orgId=1&refresh=5s&from=now-15m&to=now&panelId=2" width="450" height="300" frameborder="0"></iframe>
-									
-									<div class="mdl-grid">    
-										<div class="mdl-cell mdl-cell--6-col">
-											<iframe src="http://localhost:3000/d-solo/zeBK2SPnz/number-of-outliers?&refresh=5s&from=now-15m&to=now&orgId=1&panelId=2" width="200" height="150" frameborder="0"></iframe>
-										</div>
-										<div class="mdl-cell mdl-cell--6-col">
-											<iframe src="http://localhost:3000/d-solo/-oTA2IEnz/number-of-omissions?orgId=1&refresh=5s&from=now-15m&to=now&panelId=2" width="200" height="150" frameborder="0"></iframe>
-										</div>
-									</div>
+
+									<?php
+										echo '<iframe src="http://'. $_SERVER['SERVER_NAME'] . ':3000/d-solo/ORwev7L7z/quality-mean?orgId=1&refresh=5s&from=now-15m&to=now&panelId=2" width="450" height="300" frameborder="0"></iframe>' .
+											'<div class="mdl-grid"><div class="mdl-cell mdl-cell--6-col">' .
+											'<iframe src="http://' . $_SERVER['SERVER_NAME'] . ':3000/d-solo/zeBK2SPnz/number-of-outliers?&refresh=5s&from=now-15m&to=now&orgId=1&panelId=2" width="200" height="150" frameborder="0"></iframe>' .
+											'</div><div class="mdl-cell mdl-cell--6-col">' .
+											'<iframe src="http://' . $_SERVER['SERVER_NAME'] . ':3000/d-solo/-oTA2IEnz/number-of-omissions?orgId=1&refresh=5s&from=now-15m&to=now&panelId=2" width="200" height="150" frameborder="0"></iframe>' .
+											'</div></div>';
+									?>
 								
 								</div>
 								

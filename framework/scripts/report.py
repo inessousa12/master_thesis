@@ -328,8 +328,8 @@ def validate(path):
 def build_data(path):
     if "/" in path and path[-1] != "/":
         path += "/"
-    elif path[-1] != "\\":
-        path += "\\"
+    elif path[-1] != "/":
+        path += "/"
 
     files_names = [f for f in listdir(path) if isfile(join(path, f))]
 
@@ -368,7 +368,7 @@ def cdf_eval(cdf, x, threshold):
 
 
 def load_cdf(path):
-    return load_processed([path + "\\cdf.npz"])
+    return load_processed([path + "/cdf.npz"])
 
 
 def datetime2matlabdn(dt):

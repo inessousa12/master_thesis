@@ -1,6 +1,10 @@
 var metric;
 
 $(document).ready(function(){
+
+    // var jsvar = "<?=$_SERVER['SERVER_NAME']?>";
+    console.log(php_var); 
+
     $('body').on('click','.device-list li', function(e) {
         $checkbox = $(this).find(".checkbox_var");
         if($checkbox[0].checked) {
@@ -15,7 +19,7 @@ $(document).ready(function(){
             metric = $(this).attr("name");
             station = $(this).attr("id");
 
-            chart_html = "<div class='chart_html' id='" + station + "' name='" + metric + "'><iframe src='http://localhost:3000/d-solo/JS-pOnL7z/all-measurements?orgId=1&var-sensor_name=" + station +
+            chart_html = "<div class='chart_html' id='" + station + "' name='" + metric + "'><iframe src='http://" + php_var + ":3000/d-solo/JS-pOnL7z/all-measurements?orgId=1&var-sensor_name=" + station +
                     "&var-metric_name=" + metric + "&refresh=5s&from=now-15m&to=now&panelId=2' width='450' height='300' frameborder='0'></iframe>" +
                     "<div class='chart_config'><div class='form-check'>" +
                     "<input type='checkbox' class='form-check-input chart_checkbox' id='flexCheckDefault raw' value='raw'> " +
@@ -36,7 +40,7 @@ $(document).ready(function(){
 
         if($(".chart_checkbox:checked").length == 0)  {
             $(".chart_html#" + div_station + "[name='" + div_metric + "']").empty();
-            $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://localhost:3000/d-solo/JS-pOnL7z/all-measurements?orgId=1&var-sensor_name=" + station +
+            $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://" + php_var + ":3000/d-solo/JS-pOnL7z/all-measurements?orgId=1&var-sensor_name=" + station +
             "&var-metric_name=" + metric + "&refresh=5s&from=now-15m&to=now&panelId=2' width='450' height='300' frameborder='0'></iframe>" +
             "<div class='chart_config'><div class='form-check'>" +
             "<input type='checkbox' class='form-check-input chart_checkbox' id='flexCheckDefault raw' value='raw'> " +
@@ -50,7 +54,7 @@ $(document).ready(function(){
 
             if(chart_show == "corrected") {
                 $(".chart_html#" + div_station + "[name='" + div_metric + "']").empty();
-                $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://localhost:3000/d-solo/brx5d7L7k/correct-measurements?orgId=1&var-sensor_name=" + station +
+                $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://" + php_var + ":3000/d-solo/brx5d7L7k/correct-measurements?orgId=1&var-sensor_name=" + station +
                 "&var-metric_name=" + metric + "&refresh=5s&from=now-15m&to=now&panelId=2' width='450' height='300' frameborder='0'></iframe>" +
                 "<div class='chart_config'><div class='form-check'>" +
                 "<input type='checkbox' class='form-check-input chart_checkbox' id='flexCheckDefault raw' value='raw'> " +
@@ -60,7 +64,7 @@ $(document).ready(function(){
                 "</div>");
             } else {
                 $(".chart_html#" + div_station + "[name='" + div_metric + "']").empty();
-                $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://localhost:3000/d-solo/ZX8FO7Lnk/raw-measurements?orgId=1&var-sensor_name=" + station +
+                $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://" + php_var + ":3000/d-solo/ZX8FO7Lnk/raw-measurements?orgId=1&var-sensor_name=" + station +
                 "&var-metric_name=" + metric + "&refresh=5s&from=now-15m&to=now&panelId=2' width='450' height='300' frameborder='0'></iframe>" +
                 "<div class='chart_config'><div class='form-check'>" +
                 "<input type='checkbox' class='form-check-input chart_checkbox' id='flexCheckDefault raw' value='raw' checked> " +
@@ -71,7 +75,7 @@ $(document).ready(function(){
             }
         } else {
             $(".chart_html#" + div_station + "[name='" + div_metric + "']").empty();
-            $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://localhost:3000/d-solo/JS-pOnL7z/all-measurements?orgId=1&var-sensor_name=" + station +
+            $(".chart_html#" + div_station + "[name='" + div_metric + "']").append("<iframe src='http://" + php_var + ":3000/d-solo/JS-pOnL7z/all-measurements?orgId=1&var-sensor_name=" + station +
             "&var-metric_name=" + metric + "&refresh=5s&from=now-15m&to=now&panelId=2' width='450' height='300' frameborder='0'></iframe>" +
             "<div class='chart_config'><div class='form-check'>" +
             "<input type='checkbox' class='form-check-input chart_checkbox' id='flexCheckDefault raw' value='raw' checked> " +

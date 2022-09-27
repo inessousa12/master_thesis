@@ -119,7 +119,7 @@ def calculate_cdf(model, ann_cfg, i):
             return None
 
         save_folder = ann_cfg['model_save_path'] + \
-                      f"\\{ann_cfg['sensor']}_{ann_cfg['metric']}_{ann_cfg['inputs']}_{ann_cfg['id']}_r{i}\\stats\\"
+                      f"/{ann_cfg['sensor']}_{ann_cfg['metric']}_{ann_cfg['inputs']}_{ann_cfg['id']}_r{i}/stats/"
 
         inputs = data[0]
 
