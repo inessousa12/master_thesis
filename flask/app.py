@@ -4,14 +4,8 @@ import mysql.connector
 import datetime, time
 from flask import Flask
 from flask import jsonify
-# from app_service import AppService
 
 app = Flask(__name__)
-# appService = AppService()
-
-# https://webdamn.com/create-restful-api-using-python-mysql/
-
-#/api/<sensor_name>/<variable>/<begin_date>/<period>/whatever
 
 def datetime_converter(o):
         if isinstance(o, datetime.datetime):

@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 res: 1
             },
             success: function(data) {
-                //show success message
-                
                 data = $.parseJSON(data);
                 stations = []
                 for (var i = 0; i < data.length; i++){
@@ -29,9 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 $("div #side_list").empty();
-
-                
-
                 for (var j = 0; j < stations.length; j++) {
                     var new_html = '<li class="mdl-list__item mdl-list__item--two-line group-item" id="station_' + j + '" name="group_'+j+'">'
                         + '<span class="mdl-list__item-primary-content">'
@@ -74,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // setInterval(get_sidebar, 3000);
     get_sidebar();
 
     $(document).on("click", ".add_img", function() {
@@ -84,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {metric: 1,
                     metric_echo: 1},
             success: function(data) {
-                //show success message
                 data = $.parseJSON(data);
                 popup_add_html = "<span style='display: -webkit-box;'><select class='device_select'>";
 
@@ -126,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
             url: "../php_includes/delete_station.php",
             data: {station_name: station_name},
             success: function(data) {
-                //show success message
                 $(".popup_body").append("<p style='color:green; text-align:center;' id='success_msg'>Successfully deleted a station!</p>");
                 $("#success_msg").show().delay(5000).fadeOut();
                             
@@ -254,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {metric: 1,
                     metric_echo: 1},
             success: function(data) {
-                //show success message
                 data = $.parseJSON(data);
                 console.log(data)
 

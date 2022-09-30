@@ -2,9 +2,6 @@ var metric;
 
 $(document).ready(function(){
 
-    // var jsvar = "<?=$_SERVER['SERVER_NAME']?>";
-    console.log(php_var); 
-
     $('body').on('click','.device-list li', function(e) {
         $checkbox = $(this).find(".checkbox_var");
         if($checkbox[0].checked) {

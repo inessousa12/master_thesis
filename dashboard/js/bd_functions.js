@@ -24,13 +24,12 @@ $(document).ready(function(){
                                 status: device_status
                             };
 
-                            //insert all inputs in the db
+
                             $.ajax({
                                 type: "POST",
                                 url: "../php_includes/add_station.php",
                                 data: json_data,
                                 success: function(data) {
-                                    //show success message
                                     $('body').removeClass('modal-open');
                                     $('.modal-backdrop').remove();
                                     $(".alert-success").show().delay(5000).fadeOut();
@@ -69,7 +68,6 @@ $(document).ready(function(){
                         url: "../php_includes/add_metric.php",
                         data: {metric_name: metric},
                         success: function(data) {
-                            //show success message
                             $('body').removeClass('modal-open');
                             $('.modal-backdrop').remove();
                             $(".alert-success").show().delay(5000).fadeOut();
@@ -108,14 +106,11 @@ $(document).ready(function(){
                                 status: device_status
                             };
 
-                            //insert all inputs in the db
                             $.ajax({
                                 type: "POST",
                                 url: "../php_includes/edit_station.php",
                                 data: json_data,
                                 success: function(data) {
-                                    console.log(data)
-                                    //show success message
                                     $('body').removeClass('modal-open');
                                     $('.modal-backdrop').remove();
                                     $(".alert-success").show().delay(5000).fadeOut();
@@ -155,13 +150,11 @@ $(document).ready(function(){
                                 status: device_status
                             };
 
-                            //insert all inputs in the db
                             $.ajax({
                                 type: "POST",
                                 url: "../php_includes/add_device.php",
                                 data: json_data,
                                 success: function(data) {
-                                    //show success message
                                     $('body').removeClass('modal-open');
                                     $('.modal-backdrop').remove();
                                     $(".alert-success").show().delay(5000).fadeOut();

@@ -1,7 +1,6 @@
 function addMarkerToGroup(group, coordinate, html) {
     var marker = new H.map.Marker(coordinate);
 
-    // add custom data to the marker
     marker.setData(html);
     group.addObject(marker);
 }
@@ -15,20 +14,15 @@ function addMarkersToMap(map, ui) {
             data: {all: 1,
                 res: 1},
             success: function(data) {
-                //show success message
                 data = $.parseJSON(data);
                 var group = new H.map.Group();
     
                 map.addObject(group);
                 group.addEventListener('tap', function (evt) {
-                    // event target is the marker itself, group is a parent event target
-                    // for all objects that it contains
                     var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
-                        // read custom data
                         content: evt.target.getData()
                     });
         
-                    // show info bubble
                     ui.addBubble(bubble);
                 }, false);
     
@@ -64,8 +58,6 @@ function loadMap() {
         center: {lat:38.635643, lng:-9.110037},
         zoom: 14,
     });
-
-    
 
     // add a resize listener to make sure that the map occupies the whole container
     window.addEventListener('resize', () => map.getViewPort().resize());

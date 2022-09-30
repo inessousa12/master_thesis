@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     setInterval(function(){
 		$("#node_name").load('php_includes/session_setter.php');
-	}, 500) /* (0.5 seconds)*/
+	}, 500)
 
     $('body').on('click','#sidebar li', function(e) {
         var name = $($($(this).children()[0]).children()[0]).text();
